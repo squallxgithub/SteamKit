@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is subject to the terms and conditions defined in
  * file 'license.txt', which is part of this source code package.
  */
@@ -13,6 +13,32 @@ namespace SteamKit2.Authentication
     /// </summary>
     public sealed class AuthSessionDetails
     {
+        // 安卓设备名称列表
+        private static readonly string[] AndroidDeviceNames = new string[]
+        {
+            "Samsung Galaxy S21 (Android 12)",
+            "Google Pixel 6 (Android 12)",
+            "OnePlus 9 Pro (Android 12)",
+            "Xiaomi Mi 11 Ultra (Android 12)",
+            "Huawei P50 Pro (Android 12)",
+            "Vivo X70 Pro+ (Android 12)",
+            "Oppo Find X3 Pro (Android 12)",
+            "Realme GT 2 Pro (Android 12)",
+            "Motorola Edge 30 Pro (Android 12)",
+            "LG Velvet 2 Pro (Android 12)",
+            "Sony Xperia 1 IV (Android 12)",
+            "Nokia X20 (Android 12)",
+            "Asus ROG Phone 6 (Android 12)",
+            "Lenovo Legion Duel 2 (Android 12)",
+            "Black Shark 5 Pro (Android 12)",
+            "ZTE Axon 40 Ultra (Android 12)",
+            "Meizu 18s Pro (Android 12)",
+            "Honor Magic 4 Pro (Android 12)",
+            "TCL 20S 5G (Android 12)",
+            "Alcatel 1S (Android 12)"
+            // 你可以根据需要添加更多设备名称
+        };
+
         /// <summary>
         /// Gets or sets the username.
         /// </summary>
@@ -29,7 +55,7 @@ namespace SteamKit2.Authentication
         /// Gets or sets the device name (or user agent).
         /// </summary>
         /// <value>The device name.</value>
-        public string? DeviceFriendlyName { get; set; } = $"{Environment.MachineName} (SteamKit2)";
+        public string? DeviceFriendlyName { get; set; } = GetRandomAndroidDeviceName();
 
         /// <summary>
         /// Gets or sets the platform type that the login will be performed for.
@@ -67,5 +93,13 @@ namespace SteamKit2.Authentication
         /// </summary>
         /// <value>The authenticator object.</value>
         public IAuthenticator? Authenticator { get; set; }
+
+        // 获取随机安卓设备名称的方法
+        private static string GetRandomAndroidDeviceName()
+        {
+            Random random = new Random();
+            int index = random.Next(0, AndroidDeviceNames.Length);
+            return AndroidDeviceNames[index];
+        }
     }
 }
